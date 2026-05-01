@@ -74,6 +74,18 @@ Squad proposes a team — each member named from a persistent thematic cast. You
 
 ---
 
+### Using OpenCode CLI Instead of GitHub Copilot
+
+Squad also works with the [OpenCode CLI](https://opencode.ai). After running `squad init`, start a session with:
+
+```bash
+opencode --agent squad
+```
+
+In the OpenCode interface, select the **Squad** agent and describe what you're building. Squad will propose team members just as it does with Copilot.
+
+---
+
 ## Upgrading
 
 Upgrading Squad is a two-step process.
@@ -93,6 +105,32 @@ squad upgrade
 `squad upgrade` updates `squad.agent.md`, templates, and GitHub workflows to the latest versions. It never touches your `.squad/` team state — your agents, decisions, and history are always preserved.
 
 Use `--force` to re-apply updates even when your installed version already matches the latest.
+
+---
+
+## Local Development Installation
+
+To install and run Squad from source for development:
+
+```bash
+# Clone the repository
+git clone https://github.com/bradygaster/squad.git
+cd squad
+
+# Install dependencies (npm workspaces)
+npm install
+
+# Build the project (SDK first, then CLI)
+npm run build
+
+# Run the CLI directly
+node ./packages/squad-cli/dist/cli-entry.js init
+
+# Or link it globally for convenience
+npm run dev:link
+```
+
+After `npm run dev:link`, the `squad` command will be available globally and will use your local build. To update after code changes, re-run `npm run build` to recompile.
 
 ---
 
